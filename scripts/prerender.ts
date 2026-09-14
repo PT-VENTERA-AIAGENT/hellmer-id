@@ -14,7 +14,8 @@ const html = renderToString(
 
 const indexPath = resolve(__dirname, '../dist/index.html')
 let template = readFileSync(indexPath, 'utf-8')
-template = template.replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+// Pakai callback agar karakter $ di html tidak diinterpretasikan sebagai replacement pattern
+template = template.replace('<div id="root"></div>', () => `<div id="root">${html}</div>`)
 writeFileSync(indexPath, template)
 
-console.log('✅ Prerender selesai — dist/index.html berisi HTML statis')
+process.stdout.write('Prerender selesai — dist/index.html berisi HTML statis\n')
