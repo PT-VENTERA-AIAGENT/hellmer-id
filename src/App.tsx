@@ -200,7 +200,7 @@ export default function App() {
     setSubmitting(true);
     try {
       const data = new FormData(e.currentTarget);
-      await fetch("https://formsubmit.co/business@cocopany.com", {
+      await fetch("https://formsubmit.co/sales@hellmer.id", {
         method: "POST",
         body: data,
       });
@@ -608,7 +608,7 @@ export default function App() {
               <Button onClick={open}>Request Technical Consultation</Button>
               <Button
                 primary={false}
-                onClick={() => (location.href = "mailto:business@cocopany.com")}
+                onClick={() => (location.href = "mailto:sales@hellmer.id")}
               >
                 Email HELLMER
               </Button>
@@ -692,9 +692,9 @@ export default function App() {
                 <Phone size={16} />
                 085647486700
               </a>
-              <a href="mailto:business@cocopany.com">
+              <a href="mailto:sales@hellmer.id">
                 <Mail size={16} />
-                business@cocopany.com
+                sales@hellmer.id
               </a>
             </div>
           </div>
