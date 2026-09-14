@@ -167,14 +167,17 @@ function Button({
   children,
   primary = true,
   onClick,
+  disabled,
 }: {
   children: React.ReactNode;
   primary?: boolean;
   onClick?: () => void;
+  disabled?: boolean;
 }) {
   return (
     <button
       onClick={onClick}
+      disabled={disabled}
       className={`button ${primary ? "button-primary" : "button-secondary"}`}
     >
       {children}
@@ -187,13 +190,24 @@ export default function App() {
   const [menu, setMenu] = useState(false);
   const [modal, setModal] = useState(false);
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const open = () => {
     setSent(false);
     setModal(true);
   };
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSent(true);
+    setSubmitting(true);
+    try {
+      const data = new FormData(e.currentTarget);
+      await fetch("https://formsubmit.co/business@cocopany.com", {
+        method: "POST",
+        body: data,
+      });
+    } finally {
+      setSubmitting(false);
+      setSent(true);
+    }
   };
   return (
     <>
@@ -728,18 +742,21 @@ export default function App() {
                 <p className="eyebrow orange">LET’S TALK</p>
                 <h2>Request Technical Consultation</h2>
                 <form onSubmit={submit}>
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="hidden" name="_subject" value="HELLMER — New Consultation Request" />
                   <div className="form-grid">
                     <label>
                       Full name
-                      <input required placeholder="Nama lengkap" />
+                      <input name="name" required placeholder="Nama lengkap" />
                     </label>
                     <label>
                       Company name
-                      <input required placeholder="Nama perusahaan" />
+                      <input name="company" required placeholder="Nama perusahaan" />
                     </label>
                     <label>
                       Work email
                       <input
+                        name="email"
                         type="email"
                         required
                         placeholder="email@company.com"
@@ -747,12 +764,12 @@ export default function App() {
                     </label>
                     <label>
                       Phone / WhatsApp
-                      <input required placeholder="Nomor WhatsApp" />
+                      <input name="whatsapp" required placeholder="Nomor WhatsApp" />
                     </label>
                   </div>
                   <label>
                     Product requirement
-                    <select>
+                    <select name="product">
                       <option>FR Industrial Workwear</option>
                       <option>Arc-Flash Workwear</option>
                       <option>High-Visibility Workwear</option>
@@ -763,6 +780,7 @@ export default function App() {
                   <label>
                     Main hazard or work condition
                     <textarea
+                      name="hazard"
                       placeholder="Ceritakan kondisi kerja atau kebutuhan Anda"
                       rows={4}
                     />
@@ -772,7 +790,9 @@ export default function App() {
                     Global Indonesia menghubungi Anda terkait kebutuhan workwear
                     dan technical consultation.
                   </p>
-                  <Button>Submit Consultation Request</Button>
+                  <Button disabled={submitting}>
+                    {submitting ? "Mengirim…" : "Submit Consultation Request"}
+                  </Button>
                 </form>
               </>
             )}
