@@ -7,7 +7,6 @@ import {
   Menu,
   ShieldCheck,
   X,
-  Flame,
   FileCheck2,
   Ruler,
   PackageCheck,
@@ -15,7 +14,6 @@ import {
   Mail,
   MapPin,
   MessageCircle,
-  Layers3,
   Factory,
   HardHat,
   Zap,
@@ -29,32 +27,32 @@ type ProductIconType =
 const products: [string, string, ProductIconType][] = [
   [
     "FR Industrial Workwear",
-    "Workwear flame-resistant untuk use-case industrial yang ditentukan melalui hazard assessment dan spesifikasi teknis.",
+    "Pakaian kerja tahan api untuk kebutuhan industri, ditentukan melalui penilaian risiko dan spesifikasi teknis.",
     "flame",
   ],
   [
     "Inherent Aramid & FR Blends",
-    "Pilihan material teknis untuk kebutuhan durability, thermal performance, dan evaluasi penggunaan tertentu.",
+    "Pilihan material teknis untuk kebutuhan daya tahan, perlindungan termal, dan evaluasi penggunaan tertentu.",
     "layers",
   ],
   [
     "Arc-Flash Workwear",
-    "Untuk thermal hazard dari electric arc, dengan pemisahan yang jelas dari electric-shock protection.",
+    "Untuk bahaya termal akibat busur listrik, dengan batas perlindungan yang jelas dari sengatan listrik.",
     "arc",
   ],
   [
     "Welding Workwear",
-    "Konstruksi dan spesifikasi yang disesuaikan dengan kebutuhan welding pelanggan.",
+    "Konstruksi dan spesifikasi yang disesuaikan dengan kebutuhan pengelasan pelanggan.",
     "weld",
   ],
   [
     "Antistatic Workwear",
-    "Electrostatic performance yang dipilih bersama kondisi penggunaan dan risk assessment.",
+    "Perlindungan elektrostatis yang dipilih sesuai kondisi penggunaan dan penilaian risiko.",
     "shield",
   ],
   [
     "High-Visibility Workwear",
-    "Warna dan retroreflective material untuk konfigurasi visibility yang relevan.",
+    "Warna dan material reflektif untuk tingkat visibilitas yang sesuai.",
     "visibility",
   ],
 ];
@@ -62,43 +60,43 @@ const products: [string, string, ProductIconType][] = [
 const industries = [
   [
     "Oil & Gas",
-    "Hazard review, comfort, durability, dan repeat supply.",
+    "Tinjauan risiko, kenyamanan, daya tahan, dan pasokan berulang.",
     Factory,
   ],
   [
     "Energy & Utilities",
-    "Untuk tim operasi, maintenance, electrical, dan engineering.",
+    "Untuk tim operasi, pemeliharaan, kelistrikan, dan engineering.",
     Zap,
   ],
   [
     "EPC & Contractors",
-    "Untuk specification client, mobilization, dan multi-site delivery.",
+    "Untuk spesifikasi klien, mobilisasi, dan pengiriman ke berbagai lokasi.",
     HardHat,
   ],
   [
     "Chemical & Process",
-    "Untuk exposure, garment limitation, dan PPE ensemble.",
+    "Untuk paparan risiko, batasan pakaian kerja, dan perlengkapan APD.",
     Beaker,
   ],
   [
     "Mining",
-    "Durability, visibility, fit, dan supply consistency di lapangan.",
+    "Daya tahan, visibilitas, kesesuaian ukuran, dan konsistensi pasokan di lapangan.",
     Mountain,
   ],
   [
     "Manufacturing",
-    "Standardisasi untuk plant, production, dan engineering.",
+    "Standardisasi untuk pabrik, produksi, dan engineering.",
     Settings2,
   ],
 ];
 
 const steps = [
-  "Understand",
-  "Specify",
-  "Sample & Fit",
-  "Control",
-  "Supply",
-  "Improve",
+  "Pahami",
+  "Tentukan Spesifikasi",
+  "Sampel & Kesesuaian Ukuran",
+  "Kendalikan",
+  "Pasok",
+  "Tingkatkan",
 ];
 
 function ProductIcon({ type }: { type: ProductIconType }) {
@@ -191,10 +189,13 @@ export default function App() {
   const [modal, setModal] = useState(false);
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
-  const open = () => {
+  const [formProduct, setFormProduct] = useState("FR Industrial Workwear");
+  const open = (product = "FR Industrial Workwear") => {
     setSent(false);
+    setFormProduct(product);
     setModal(true);
   };
+  const openTechPack = () => open("Dokumen Teknis / Sampel");
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitting(true);
@@ -216,26 +217,26 @@ export default function App() {
           <Brand />
           <nav className={menu ? "open" : ""}>
             <a href="#solutions" onClick={() => setMenu(false)}>
-              Workwear Solutions
+              Solusi Workwear
             </a>
             <a href="#industries" onClick={() => setMenu(false)}>
-              Industries
+              Industri
             </a>
             <a href="#standards" onClick={() => setMenu(false)}>
-              Technical Standards
+              Standar Teknis
             </a>
             <a href="#program" onClick={() => setMenu(false)}>
-              Managed Program
+              Program Terkelola
             </a>
             <a href="#about" onClick={() => setMenu(false)}>
-              About HELLMER
+              Tentang HELLMER
             </a>
             <a href="#insights" onClick={() => setMenu(false)}>
-              Insights
+              Wawasan
             </a>
           </nav>
-          <button className="header-cta" onClick={open}>
-            Request Consultation <ArrowRight size={15} />
+          <button className="header-cta" onClick={() => open()}>
+            Konsultasi Teknis <ArrowRight size={15} />
           </button>
           <button
             className="menu"
@@ -257,20 +258,20 @@ export default function App() {
             </h1>
             <p className="hero-copy">
               Pakaian kerja untuk operasi berisiko tinggi tidak boleh dipilih
-              hanya dari foto, harga, atau label “premium”. HELLMER membantu
+              hanya dari foto, harga, atau label "premium". HELLMER membantu
               perusahaan memilih, menguji, mengelola, dan memasok workwear
-              berdasarkan hazard, kebutuhan site, kenyamanan pekerja,
-              dokumentasi, serta konsistensi antar-order.
+              berdasarkan risiko kerja, kebutuhan lokasi, kenyamanan pekerja,
+              sertifikasi dan bukti teknis, serta konsistensi setiap pesanan.
             </p>
             <div className="button-row">
-              <Button onClick={open}>Request Technical Consultation</Button>
-              <Button primary={false} onClick={open}>
-                Request Sample & Technical Pack
+              <Button onClick={() => open()}>Konsultasi Teknis</Button>
+              <Button primary={false} onClick={() => open()}>
+                Minta Sampel & Dokumen Teknis
               </Button>
             </div>
             <p className="reassurance">
-              <Check size={16} /> Untuk oil and gas, energi, EPC, chemical,
-              mining, manufacturing, dan operasi industrial multi-site.
+              <Check size={16} /> Untuk oil and gas, energi, EPC, kimia,
+              pertambangan, manufaktur, dan operasi industri di berbagai lokasi.
             </p>
           </div>
           <div className="hero-mark">
@@ -281,10 +282,27 @@ export default function App() {
           </div>
         </section>
 
+        <section className="trust-bar">
+          <div className="container trust-bar-grid">
+            {[
+              ["6", "Kategori Produk Teknis", "FR · Arc-Flash · Hi-Vis · Welding · Antistatic · Aramid"],
+              ["6", "Segmen Industri", "Oil & Gas · EPC · Energy · Chemical · Mining · Manufacturing"],
+              ["10+", "Standar Referensi", "EN ISO · NFPA · IEC · ASTM — dapat diverifikasi"],
+              ["Jakarta", "Berbasis di Indonesia", "PT Barooka Global Indonesia"],
+            ].map(([num, label, sub]) => (
+              <div key={label} className="trust-stat">
+                <strong>{num}</strong>
+                <span>{label}</span>
+                <p>{sub}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="section problem">
           <div className="container split">
             <div>
-              <p className="eyebrow">THE PROBLEM</p>
+              <p className="eyebrow">TANTANGAN</p>
               <h2>
                 Wearpack yang{" "}
                 <span className="accent-text">terlihat bagus</span> belum tentu
@@ -294,12 +312,12 @@ export default function App() {
             <div className="prose">
               <p>
                 Banyak perusahaan memilih workwear dari harga, tampilan, atau
-                janji supplier. Masalah biasanya baru terasa saat produk dipakai
+                janji pemasok. Masalah biasanya baru terasa saat produk digunakan
                 di lapangan.
               </p>
               <p>
-                Ukuran tidak konsisten. Material atau trim berubah saat repeat
-                order. Bukti uji, sertifikasi, atau dokumen teknis tidak siap
+                Ukuran tidak konsisten. Material atau detail pelengkap berubah saat pesanan
+                berulang. Bukti uji, sertifikasi, atau dokumen teknis tidak siap
                 ketika audit. Saat ada produk cacat, proses penggantiannya tidak
                 jelas.
               </p>
@@ -308,7 +326,7 @@ export default function App() {
                 memengaruhi{" "}
                 <strong>
                   keselamatan, kenyamanan pekerja, kelancaran operasi, kepatuhan
-                  procurement, dan reputasi perusahaan.
+                  pengadaan, dan reputasi perusahaan.
                 </strong>
               </p>
             </div>
@@ -317,17 +335,17 @@ export default function App() {
 
         <section className="section agitation">
           <div className="container">
-            <p className="eyebrow orange">BEYOND UNIT PRICE</p>
+            <p className="eyebrow orange">LEBIH DARI HARGA PER UNIT</p>
             <div className="agitate-line">
               <h2>
                 Harga murah dapat menjadi{" "}
                 <span className="accent-text">mahal</span> ketika spesifikasi,
-                ukuran, dan dokumentasi tidak terkendali.
+                ukuran, serta sertifikasi dan bukti teknis tidak terkendali.
               </h2>
               <p>
-                Biaya sebenarnya juga mencakup size exchange, replacement,
-                stockout, rework logo, keterlambatan delivery, pembelian ulang
-                darurat, penolakan dokumen, dan waktu yang terbuang.
+                Biaya sebenarnya juga mencakup penukaran ukuran, penggantian,
+                kehabisan stok, perbaikan logo, keterlambatan pengiriman, pembelian ulang
+                darurat, kendala sertifikasi, dan waktu yang terbuang.
               </p>
             </div>
           </div>
@@ -335,38 +353,38 @@ export default function App() {
 
         <section className="section" id="solutions">
           <div className="container">
-            <p className="eyebrow">THE HELLMER APPROACH</p>
+            <p className="eyebrow">PENDEKATAN HELLMER</p>
             <div className="section-head">
               <h2>
-                Satu partner untuk workwear teknis yang{" "}
+                Satu mitra untuk workwear teknis yang{" "}
                 <span className="accent-text">siap dipertanggungjawabkan.</span>
               </h2>
               <p>
-                Produk, bukti teknis, fitting, quality control, dan layanan
-                supply dalam satu alur kerja yang jelas.
+                Produk, bukti teknis, kesesuaian ukuran, quality control, dan layanan
+                pasokan dalam satu alur kerja yang jelas.
               </p>
             </div>
             <div className="pillars">
               {[
                 [
                   ShieldCheck,
-                  "Hazard-to-specification",
-                  "Kami mulai dari kebutuhan pekerjaan dan risiko di site.",
+                  "Dari risiko ke spesifikasi",
+                  "Kami mulai dari kebutuhan pekerjaan dan risiko di lokasi kerja.",
                 ],
                 [
                   FileCheck2,
-                  "Technical evidence",
-                  "Klaim produk harus memiliki dasar yang jelas dan mudah ditinjau.",
+                  "Bukti teknis",
+                  "Klaim produk harus didukung sertifikasi atau bukti teknis yang jelas dan mudah ditinjau.",
                 ],
                 [
                   Ruler,
-                  "Fit and adoption",
-                  "Sample, size-set, size survey, dan approval untuk fit yang lebih konsisten.",
+                  "Kesesuaian ukuran",
+                  "Sampel, set ukuran, survei ukuran, dan persetujuan untuk hasil yang lebih konsisten.",
                 ],
                 [
                   PackageCheck,
-                  "Managed supply",
-                  "Kelola SKU, kualitas, delivery, replacement, batch traceability, dan replenishment.",
+                  "Pasokan terkelola",
+                  "Kelola SKU, kualitas, pengiriman, penggantian, ketertelusuran batch, dan pengisian ulang stok.",
                 ],
               ].map(([Icon, title, text], i) => (
                 <article className="pillar" key={String(title)}>
@@ -384,16 +402,16 @@ export default function App() {
           <div className="container">
             <div className="section-head">
               <div>
-                <p className="eyebrow">PRODUCT FAMILIES</p>
+                <p className="eyebrow">KATEGORI PRODUK</p>
                 <h2>
-                  Technical workwear untuk{" "}
+                  Workwear teknis untuk{" "}
                   <span className="accent-text">kebutuhan operasi</span> yang
                   berbeda.
                 </h2>
               </div>
               <p>
-                Tidak ada satu wearpack yang tepat untuk semua hazard. Product
-                family disusun berdasarkan kebutuhan penggunaan dan bukti
+                Tidak ada satu wearpack yang tepat untuk semua risiko kerja. Kategori produk
+                disusun berdasarkan kebutuhan penggunaan dan bukti
                 performa yang tersedia.
               </p>
             </div>
@@ -421,8 +439,8 @@ export default function App() {
                   <ProductIcon type={type} />
                   <h3>{title}</h3>
                   <p>{text}</p>
-                  <button onClick={open}>
-                    Explore solution <ChevronRight size={17} />
+                  <button onClick={() => open()}>
+                    Lihat solusi <ChevronRight size={17} />
                   </button>
                 </article>
               ))}
@@ -432,7 +450,7 @@ export default function App() {
 
         <section className="section industries" id="industries">
           <div className="container">
-            <p className="eyebrow">INDUSTRIES</p>
+            <p className="eyebrow">INDUSTRI</p>
             <h2>
               Dibuat untuk lingkungan kerja yang{" "}
               <span className="accent-text">menuntut lebih.</span>
@@ -445,7 +463,7 @@ export default function App() {
                   <h3>{title as string}</h3>
                   <p>{text as string}</p>
                   <a href="#contact">
-                    Learn more <ArrowRight size={15} />
+                    Selengkapnya <ArrowRight size={15} />
                   </a>
                 </article>
               ))}
@@ -456,52 +474,88 @@ export default function App() {
         <section className="evidence" id="standards">
           <div className="container evidence-grid">
             <div>
-              <p className="eyebrow light">BUILT ON EVIDENCE</p>
+              <p className="eyebrow light">BERDASARKAN BUKTI</p>
               <h2>
                 Premium bukan hanya bahan. Premium adalah kemampuan untuk
                 <span className="accent-text">
                   membuktikan dan mengelola kualitas.
                 </span>
               </h2>
-              <Button onClick={open}>Request a Technical Pack</Button>
+              <Button onClick={() => open()}>Minta Dokumen Teknis</Button>
             </div>
             <div className="evidence-card">
-              <h3>HELLMER evidence policy</h3>
+              <h3>Kebijakan bukti teknis HELLMER</h3>
               <p>
                 Setiap SKU idealnya memiliki identitas model, komposisi
-                material, konstruksi, ukuran, care instruction, revision,
-                traceability, dan dokumen performa yang relevan.
+                material, konstruksi, ukuran, petunjuk perawatan, revisi,
+                ketertelusuran, serta sertifikasi atau dokumen performa yang relevan.
               </p>
               <ul>
                 <li>
-                  <Check /> HELLMER-owned evidence
+                  <Check /> Bukti teknis milik HELLMER
                 </li>
                 <li>
-                  <Check /> Third-party standard reference
+                  <Check /> Referensi standar dari pihak ketiga
                 </li>
                 <li>
-                  <Check /> Supplier claim — subject to verification
+                  <Check /> Klaim pemasok — perlu verifikasi
                 </li>
               </ul>
               <small>
-                Kami tidak menggunakan istilah “certified”, “approved”, atau
-                “compliant” tanpa dokumen yang sesuai dengan produk dan scope
-                klaim.
+                Kami tidak menggunakan istilah "bersertifikat", "disetujui", atau
+                "sesuai standar" tanpa sertifikasi atau dokumen yang relevan dengan produk dan
+                ruang lingkup klaim.
               </small>
+            </div>
+          </div>
+        </section>
+
+        <section className="section cert-section">
+          <div className="container">
+            <p className="eyebrow">STANDAR TEKNIS</p>
+            <p className="cert-sub">
+              HELLMER menggunakan standar internasional sebagai referensi spesifikasi produk.
+              Status sertifikasi per SKU tercantum dalam dokumen teknis masing-masing produk.
+            </p>
+            <div className="cert-grid">
+              {[
+                ["EN ISO 11612", "Flame / Heat", "Perlindungan dari panas dan api terbuka"],
+                ["EN ISO 11611", "Welding", "Pakaian kerja untuk pengelasan"],
+                ["EN ISO 20471", "Hi-Visibility", "Pakaian visibilitas tinggi"],
+                ["IEC 61482-2", "Arc Flash", "Perlindungan busur listrik"],
+                ["NFPA 2112", "Flash Fire", "Perlindungan dari flash fire"],
+                ["ASTM F1959", "ATPV Rating", "Arc Thermal Protection Value"],
+              ].map(([code, type, desc]) => (
+                <div key={code} className="cert-badge">
+                  <span className="cert-code">{code}</span>
+                  <span className="cert-type">{type}</span>
+                  <p>{desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="tech-pack-banner">
+              <div>
+                <h3>Technical Specification Pack</h3>
+                <p>
+                  Dokumen teknis per SKU: komposisi material, standar referensi, konstruksi,
+                  petunjuk perawatan, dan sertifikasi yang berlaku.
+                </p>
+              </div>
+              <Button onClick={openTechPack}>Minta Technical Pack</Button>
             </div>
           </div>
         </section>
 
         <section className="section" id="program">
           <div className="container">
-            <p className="eyebrow">MANAGED WORKWEAR PROGRAM</p>
+            <p className="eyebrow">PROGRAM WORKWEAR TERKELOLA</p>
             <div className="section-head">
               <h2>
-                Dari pembelian garment menjadi program workwear yang lebih
+                Dari pembelian garmen menjadi program workwear yang lebih
                 <span className="accent-text">terkendali.</span>
               </h2>
               <p>
-                Dari requirement hingga repeat order, kami menyusun alur yang
+                Dari kebutuhan awal hingga pesanan berulang, kami menyusun alur yang
                 lebih terkendali untuk tim Anda.
               </p>
             </div>
@@ -514,12 +568,12 @@ export default function App() {
                   <p>
                     {
                       [
-                        "Memahami site, pekerjaan, hazard, jumlah pekerja, ukuran, dan requirement.",
-                        "Menyusun brief, intended use, material requirement, dan acceptance criteria.",
-                        "Sample, size-set, fitting, feedback, dan approval sebelum produksi.",
-                        "Revision, material, trim, konstruksi, inspection, dan batch record.",
-                        "Delivery, order visibility, replacement, dokumentasi, dan replenishment.",
-                        "Menggunakan data defect, fit, OTIF, dan feedback untuk program berikutnya.",
+                        "Memahami lokasi kerja, pekerjaan, risiko, jumlah pekerja, ukuran, dan kebutuhan.",
+                        "Menyusun brief, tujuan penggunaan, kebutuhan material, dan kriteria penerimaan.",
+                        "Sampel, set ukuran, uji kesesuaian, masukan, dan persetujuan sebelum produksi.",
+                        "Revisi, material, detail pelengkap, konstruksi, inspeksi, dan catatan batch.",
+                        "Pengiriman, visibilitas pesanan, penggantian, sertifikasi dan bukti teknis, serta pengisian ulang stok.",
+                        "Menggunakan data cacat, kesesuaian ukuran, ketepatan pengiriman, dan masukan untuk program berikutnya.",
                       ][i]
                     }
                   </p>
@@ -532,8 +586,8 @@ export default function App() {
         <section className="section surface why">
           <div className="container">
             <div className="why-intro">
-              <p className="eyebrow">WHY HELLMER</p>
-              <span className="why-index">05 / THE DIFFERENCE</span>
+              <p className="eyebrow">MENGAPA HELLMER</p>
+              <span className="why-index">05 / PERBEDAANNYA</span>
               <h2>
                 Mengapa perusahaan memilih{" "}
                 <span className="accent-text">pendekatan HELLMER?</span>
@@ -545,25 +599,25 @@ export default function App() {
             </div>
             <div className="comparison">
               <div className="comparison-row heading">
-                <b>Supplier biasa</b>
+                <b>Pemasok biasa</b>
                 <b>Pendekatan HELLMER</b>
               </div>
               {[
                 [
                   "Spesifikasi generik, tidak sesuai risiko kerja",
-                  "Review risiko kerja dan spesifikasi yang jelas",
+                  "Tinjauan risiko kerja dan spesifikasi yang jelas",
                 ],
                 [
                   "Ukuran sering tidak pas dan tidak konsisten",
-                  "Size survey, size-set, dan size matrix",
+                  "Survei ukuran, set ukuran, dan matriks ukuran",
                 ],
                 [
                   "Sertifikasi, bukti uji, dan data produk tidak lengkap",
                   "Bukti teknis per SKU yang mudah ditelusuri",
                 ],
                 [
-                  "Repeat order berubah kualitas atau spesifikasinya",
-                  "SKU terkendali, revision, dan traceability batch",
+                  "Pesanan berulang berubah kualitas atau spesifikasinya",
+                  "SKU terkendali, revisi, dan ketertelusuran batch",
                 ],
                 [
                   "Waktu kirim tidak jelas dan sulit dipantau",
@@ -575,7 +629,7 @@ export default function App() {
                 ],
                 [
                   "Harga murah, tetapi biaya masalah bertambah",
-                  "Total biaya kepemilikan dan supply yang terkelola",
+                  "Total biaya kepemilikan dan pasokan yang terkelola",
                 ],
               ].map(([a, b]) => (
                 <div className="comparison-row" key={a}>
@@ -590,9 +644,39 @@ export default function App() {
           </div>
         </section>
 
-        <section className="cta-banner" id="about">
+        <section className="section surface social-proof">
           <div className="container">
-            <p className="eyebrow light">READY TO BEGIN</p>
+            <p className="eyebrow">KEPERCAYAAN INDUSTRI</p>
+            <h2>
+              Workwear yang{" "}
+              <span className="accent-text">dipakai di operasi nyata.</span>
+            </h2>
+            <p className="social-intro">
+              Kami melayani tim HSE, procurement, dan operasi di sektor-sektor
+              berisiko tinggi di seluruh Indonesia.
+            </p>
+            <div className="sector-grid">
+              {[
+                [Factory, "Oil & Gas", "Onshore & offshore, produksi, maintenance"],
+                [Zap, "Energy & Power", "PLTU, PLTG, transmisi dan distribusi"],
+                [HardHat, "EPC & Konstruksi", "Proyek EPC, konstruksi, mobilisasi"],
+                [Beaker, "Chemical & Process", "Pabrik kimia, petrokimia, refinery"],
+                [Mountain, "Mining", "Open pit, underground, site multi-lokasi"],
+                [Settings2, "Manufacturing", "Pabrik, assembly, heavy industry"],
+              ].map(([Icon, name, desc]) => (
+                <div key={name as string} className="sector-card">
+                  <Icon size={24} />
+                  <strong>{name as string}</strong>
+                  <span>{desc as string}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="cta-banner">
+          <div className="container">
+            <p className="eyebrow light">SIAP MEMULAI</p>
             <h2>
               Jangan mulai dari katalog.
               <br />
@@ -600,18 +684,15 @@ export default function App() {
               <span className="accent-text">kebutuhan pekerjaan Anda.</span>
             </h2>
             <p>
-              Kirimkan detail site, jumlah pekerja, hazard utama, spesifikasi
+              Kirimkan detail lokasi kerja, jumlah pekerja, risiko utama, spesifikasi
               saat ini, dan target pengadaan. Kami akan membantu menentukan
               langkah berikutnya.
             </p>
             <div className="button-row">
-              <Button onClick={open}>Request Technical Consultation</Button>
-              <Button
-                primary={false}
-                onClick={() => (location.href = "mailto:sales@hellmer.id")}
-              >
-                Email HELLMER
-              </Button>
+              <Button onClick={() => open()}>Konsultasi Teknis</Button>
+              <a href="mailto:sales@hellmer.id" className="button button-secondary">
+                Email HELLMER <ArrowRight size={16} />
+              </a>
             </div>
           </div>
         </section>
@@ -619,29 +700,41 @@ export default function App() {
         <section className="section faq" id="insights">
           <div className="container split">
             <div>
-              <p className="eyebrow">INSIGHTS & FAQ</p>
+              <p className="eyebrow">WAWASAN & FAQ</p>
               <h2>
                 Pengetahuan workwear untuk{" "}
                 <span className="accent-text">keputusan yang lebih baik.</span>
               </h2>
               <p>
-                Kami membahas material, hazard, standard, sizing, procurement,
-                dan operational workwear dengan batasan yang jujur.
+                Kami membahas material, risiko kerja, standar, ukuran, pengadaan,
+                dan workwear operasional dengan informasi yang jujur.
               </p>
             </div>
             <div className="faq-list">
               {[
                 [
                   "Apakah HELLMER menjual wearpack tahan api?",
-                  "HELLMER menyediakan technical workwear untuk use-case yang membutuhkan flame-resistant atau heat/flame performance sesuai hazard assessment dan spesifikasi pelanggan.",
+                  "HELLMER menyediakan workwear teknis untuk kebutuhan yang memerlukan perlindungan tahan api atau performa panas/api, sesuai penilaian risiko dan spesifikasi pelanggan.",
                 ],
                 [
                   "Apakah semua produk HELLMER sudah bersertifikat?",
-                  "Status sertifikasi atau test evidence berbeda berdasarkan produk dan model. HELLMER hanya menyatakan standar atau sertifikasi jika dokumen yang relevan tersedia.",
+                  "Status sertifikasi atau bukti pengujian berbeda menurut produk dan model. HELLMER hanya menyatakan standar atau sertifikasi apabila dokumen yang relevan tersedia.",
                 ],
                 [
                   "Apakah HELLMER dapat membuat desain corporate?",
-                  "Ya. Kami dapat mendukung custom design, warna, logo, identification marking, size range, dan kebutuhan site tertentu setelah requirement teknis disepakati.",
+                  "Ya. Kami dapat mendukung desain khusus, warna, logo, penandaan identitas, rentang ukuran, dan kebutuhan lokasi kerja tertentu setelah kebutuhan teknis disepakati.",
+                ],
+                [
+                  "Berapa minimum order untuk workwear HELLMER?",
+                  "Minimum order bervariasi tergantung kategori produk dan spesifikasi. Untuk program workwear terkelola, kami bekerja dengan perusahaan yang membutuhkan pasokan berulang — mulai dari kebutuhan tim kecil hingga program multi-site.",
+                ],
+                [
+                  "Apakah HELLMER melayani pengiriman ke luar Jawa?",
+                  "Ya. Kami mendukung pengiriman ke seluruh Indonesia, termasuk lokasi proyek dan site operasi di luar Jawa. Pengiriman ke lokasi terpencil dapat dibahas dalam konsultasi teknis.",
+                ],
+                [
+                  "Bagaimana proses konsultasi teknis HELLMER?",
+                  "Proses dimulai dengan brief kebutuhan: lokasi kerja, risiko utama, jumlah pekerja, dan spesifikasi saat ini jika ada. Kami kemudian menyusun rekomendasi produk, standar relevan, dan langkah berikutnya.",
                 ],
               ].map(([q, a]) => (
                 <details key={q}>
@@ -655,6 +748,80 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        <section className="section about-section" id="about">
+          <div className="container">
+            <p className="eyebrow">TENTANG HELLMER</p>
+            <div className="about-grid">
+              <div>
+                <h2>
+                  Industrial workwear yang{" "}
+                  <span className="accent-text">bisa dipertanggungjawabkan.</span>
+                </h2>
+                <p className="about-body">
+                  HELLMER adalah brand workwear teknis dari PT Barooka Global
+                  Indonesia, dibangun untuk membantu perusahaan di sektor
+                  berisiko tinggi mengelola pakaian kerja mereka — dari
+                  spesifikasi awal hingga pasokan berulang yang konsisten.
+                </p>
+                <p className="about-body">
+                  Kami tidak menjual dari katalog generik. Setiap engagement
+                  dimulai dengan memahami pekerjaan, risiko, dan lingkungan
+                  operasi klien, kemudian memilih dan mengelola workwear
+                  berdasarkan kebutuhan tersebut.
+                </p>
+              </div>
+              <div>
+                <div className="about-card">
+                  <p className="footer-label">BADAN USAHA</p>
+                  <p className="about-company-name">PT Barooka Global Indonesia</p>
+                  <p>
+                    <MapPin size={14} />
+                    AD Premier 9th Floor, Jl. TB Simatupang No. 5 Ragunan,
+                    Pasar Minggu, Jakarta Selatan 12550
+                  </p>
+                  <a href="tel:085647486700">
+                    <Phone size={14} />
+                    085647486700
+                  </a>
+                  <a href="mailto:sales@hellmer.id">
+                    <Mail size={14} />
+                    sales@hellmer.id
+                  </a>
+                  <a
+                    href="https://wa.me/6285647486700"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <MessageCircle size={14} />
+                    WhatsApp
+                  </a>
+                </div>
+                <div className="marketplace-links">
+                  <p className="footer-label">TERSEDIA DI</p>
+                  <div className="marketplace-links-row">
+                    <a
+                      href="https://www.tokopedia.com/search?st=product&q=hellmer+workwear"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="marketplace-btn"
+                    >
+                      Tokopedia
+                    </a>
+                    <a
+                      href="https://shopee.co.id/search?keyword=hellmer+workwear"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="marketplace-btn"
+                    >
+                      Shopee
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <footer id="contact">
         <div className="container footer-top">
@@ -663,22 +830,22 @@ export default function App() {
             <h2>
               Workwear yang <span className="accent-text">lebih jelas.</span>
               <br />
-              Supply yang lebih <span className="accent-text">terkendali.</span>
+              Pasokan yang lebih <span className="accent-text">terkendali.</span>
             </h2>
             <p>
-              HELLMER membantu perusahaan Indonesia mengelola technical workwear
-              dari spesifikasi hingga repeat order.
+              HELLMER membantu perusahaan Indonesia mengelola workwear teknis
+              dari spesifikasi hingga pesanan berulang.
             </p>
-            <Button onClick={open}>Request Technical Consultation</Button>
+            <Button onClick={() => open()}>Konsultasi Teknis</Button>
           </div>
           <div className="footer-links">
             <div>
-              <p className="footer-label">EXPLORE</p>
-              <a href="#solutions">Workwear Solutions</a>
-              <a href="#industries">Industries</a>
-              <a href="#standards">Technical Standards</a>
-              <a href="#program">Managed Workwear Program</a>
-              <a href="#insights">Insights</a>
+              <p className="footer-label">EKSPLORASI</p>
+              <a href="#solutions">Solusi Workwear</a>
+              <a href="#industries">Industri</a>
+              <a href="#standards">Standar Teknis</a>
+              <a href="#program">Program Workwear Terkelola</a>
+              <a href="#insights">Wawasan</a>
             </div>
             <div>
               <p className="footer-label">CONTACT</p>
@@ -696,6 +863,31 @@ export default function App() {
                 <Mail size={16} />
                 sales@hellmer.id
               </a>
+              <a
+                href="https://wa.me/6285647486700"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle size={16} />
+                WhatsApp
+              </a>
+              <div className="footer-marketplace">
+                <p className="footer-label">TERSEDIA DI</p>
+                <a
+                  href="https://www.tokopedia.com/search?st=product&q=hellmer+workwear"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Tokopedia
+                </a>
+                <a
+                  href="https://shopee.co.id/search?keyword=hellmer+workwear"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Shopee
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -706,7 +898,7 @@ export default function App() {
           </p>
           <p>
             Informasi mengenai standar, performa, material, sertifikasi, dan
-            intended use harus dibaca berdasarkan dokumen produk dan scope yang
+            tujuan penggunaan harus dibaca berdasarkan dokumen produk serta ruang lingkup yang
             berlaku.
           </p>
         </div>
@@ -716,10 +908,10 @@ export default function App() {
         href="https://wa.me/6285647486700"
         target="_blank"
         rel="noreferrer"
-        aria-label="Talk to HELLMER on WhatsApp"
+        aria-label="Hubungi HELLMER melalui WhatsApp"
       >
         <MessageCircle size={21} />
-        <span>Talk to HELLMER</span>
+        <span>Hubungi HELLMER</span>
       </a>
       {modal && (
         <div className="modal-backdrop" onClick={() => setModal(false)}>
@@ -732,29 +924,29 @@ export default function App() {
                 <Check size={38} />
                 <h2>Terima kasih.</h2>
                 <p>
-                  Request Anda telah diterima. Tim HELLMER akan meninjau
+                  Permintaan Anda telah diterima. Tim HELLMER akan meninjau
                   informasi dan menghubungi Anda melalui email atau WhatsApp.
                 </p>
-                <Button onClick={() => setModal(false)}>Close</Button>
+                <Button onClick={() => setModal(false)}>Tutup</Button>
               </div>
             ) : (
               <>
-                <p className="eyebrow orange">LET’S TALK</p>
-                <h2>Request Technical Consultation</h2>
+                <p className="eyebrow orange">MARI BERDISKUSI</p>
+                <h2>Konsultasi Teknis</h2>
                 <form onSubmit={submit}>
                   <input type="hidden" name="_captcha" value="false" />
                   <input type="hidden" name="_subject" value="HELLMER — New Consultation Request" />
                   <div className="form-grid">
                     <label>
-                      Full name
+                      Nama lengkap
                       <input name="name" required placeholder="Nama lengkap" />
                     </label>
                     <label>
-                      Company name
+                      Nama perusahaan
                       <input name="company" required placeholder="Nama perusahaan" />
                     </label>
                     <label>
-                      Work email
+                      Email kantor
                       <input
                         name="email"
                         type="email"
@@ -763,22 +955,22 @@ export default function App() {
                       />
                     </label>
                     <label>
-                      Phone / WhatsApp
+                      Telepon / WhatsApp
                       <input name="whatsapp" required placeholder="Nomor WhatsApp" />
                     </label>
                   </div>
                   <label>
-                    Product requirement
-                    <select name="product">
+                    Kebutuhan produk
+                    <select name="product" value={formProduct} onChange={(e) => setFormProduct(e.target.value)}>
                       <option>FR Industrial Workwear</option>
                       <option>Arc-Flash Workwear</option>
                       <option>High-Visibility Workwear</option>
                       <option>Corporate Workwear Program</option>
-                      <option>Technical Pack / Sample</option>
+                      <option>Dokumen Teknis / Sampel</option>
                     </select>
                   </label>
                   <label>
-                    Main hazard or work condition
+                    Risiko utama atau kondisi kerja
                     <textarea
                       name="hazard"
                       placeholder="Ceritakan kondisi kerja atau kebutuhan Anda"
@@ -788,10 +980,10 @@ export default function App() {
                   <p className="consent">
                     Dengan mengirimkan formulir ini, Anda menyetujui PT Barooka
                     Global Indonesia menghubungi Anda terkait kebutuhan workwear
-                    dan technical consultation.
+                    dan konsultasi teknis.
                   </p>
                   <Button disabled={submitting}>
-                    {submitting ? "Mengirim…" : "Submit Consultation Request"}
+                    {submitting ? "Mengirim…" : "Kirim Permintaan Konsultasi"}
                   </Button>
                 </form>
               </>

@@ -1,5 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=DM+Serif+Display:ital@0;1&display=swap");
+/* Fonts loaded via <link> in index.html (non-blocking) */
 :root {
   --navy: #0b1f33;
   --ink: #17212b;
@@ -1272,5 +1271,280 @@ footer {
   }
   .why .comparison-row {
     min-height: auto;
+  }
+}
+
+/* ─── Trust bar (#2 / #10) ───────────────────────────── */
+.trust-bar {
+  background: var(--navy);
+  border-bottom: 1px solid #1e3550;
+}
+.trust-bar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.trust-stat {
+  padding: 22px 28px;
+  border-right: 1px solid #1e3550;
+}
+.trust-stat:last-child {
+  border-right: 0;
+}
+.trust-stat strong {
+  display: block;
+  font: 700 26px / 1 "Space Grotesk";
+  color: var(--orange);
+  letter-spacing: -1px;
+}
+.trust-stat > span {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  margin: 4px 0 3px;
+}
+.trust-stat p {
+  font-size: 11px;
+  color: #8ca1b2;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ─── Social proof / sector grid (#2) ───────────────── */
+.social-intro {
+  color: #53606c;
+  font-size: 16px;
+  max-width: 620px;
+  margin: 12px 0 36px;
+}
+.sector-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+}
+.sector-card {
+  background: #fff;
+  padding: 28px;
+  transition: background 0.25s;
+}
+.sector-card:hover {
+  background: var(--off);
+}
+.sector-card svg {
+  color: var(--orange);
+}
+.sector-card strong {
+  display: block;
+  font-family: "Space Grotesk";
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--navy);
+  margin: 10px 0 5px;
+  letter-spacing: -0.5px;
+}
+.sector-card span {
+  font-size: 12px;
+  color: #687482;
+}
+
+/* ─── Cert standards (#7) ────────────────────────────── */
+.cert-section {
+  background: #f8f5ef;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.cert-sub {
+  color: #53606c;
+  max-width: 680px;
+  margin: 10px 0 36px;
+  font-size: 15px;
+}
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+.cert-badge {
+  background: #fff;
+  border: 1px solid var(--line);
+  padding: 20px 14px;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cert-badge:hover {
+  border-color: var(--navy);
+  box-shadow: 0 4px 16px rgba(11, 31, 51, 0.08);
+}
+.cert-code {
+  display: block;
+  font: 700 13px "DM Mono";
+  color: var(--navy);
+  letter-spacing: 0.2px;
+  margin-bottom: 4px;
+}
+.cert-type {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+.cert-badge p {
+  font-size: 11px;
+  color: #687482;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* ─── Technical pack CTA (#8) ────────────────────────── */
+.tech-pack-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background: var(--navy);
+  color: #fff;
+  padding: 32px 40px;
+  margin-top: 48px;
+}
+.tech-pack-banner h3 {
+  font-size: 22px;
+  margin: 0 0 6px;
+  color: #fff;
+  letter-spacing: -0.8px;
+}
+.tech-pack-banner > div > p {
+  color: #b7c9d6;
+  font-size: 13px;
+  margin: 0;
+  max-width: 520px;
+}
+
+/* ─── About section (#10) ────────────────────────────── */
+.about-section {
+  background: #fff;
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 90px;
+  align-items: start;
+}
+.about-body {
+  color: #4d5964;
+  font-size: 16px;
+  line-height: 1.75;
+  margin: 20px 0 0;
+}
+.about-card {
+  background: var(--off);
+  border: 1px solid var(--line);
+  padding: 28px;
+}
+.about-card .footer-label {
+  margin: 0 0 10px;
+}
+.about-card .about-company-name {
+  font-family: "Space Grotesk";
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin: 0 0 12px;
+}
+.about-card p,
+.about-card a {
+  font-size: 13px;
+  color: #4d5964;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  text-decoration: none;
+  margin: 7px 0;
+  line-height: 1.5;
+}
+.about-card a:hover {
+  color: var(--orange);
+}
+.about-card svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--steel);
+  width: 14px;
+  height: 14px;
+}
+
+/* ─── Marketplace links (#9) ─────────────────────────── */
+.marketplace-links {
+  margin-top: 22px;
+}
+.marketplace-links-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.marketplace-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 16px;
+  border: 1px solid var(--line);
+  background: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--navy);
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.marketplace-btn:hover {
+  background: var(--navy);
+  color: #fff;
+  border-color: var(--navy);
+}
+.footer-marketplace {
+  margin-top: 18px;
+}
+
+/* ─── Responsive for new sections ───────────────────── */
+@media (max-width: 1000px) {
+  .trust-bar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cert-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .about-grid {
+    gap: 50px;
+  }
+}
+@media (max-width: 700px) {
+  .trust-bar-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .trust-stat {
+    padding: 16px 20px;
+  }
+  .cert-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sector-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .tech-pack-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px 22px;
   }
 }
