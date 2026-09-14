@@ -31,11 +31,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" />
 
-    <!-- Structured Data: Organization + LocalBusiness (#5) -->
+    <!-- Structured Data: Organization + LocalBusiness -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": ["Organization", "LocalBusiness"],
+      "@id": "https://hellmer.id/#organization",
       "name": "HELLMER",
       "legalName": "PT Barooka Global Indonesia",
       "url": "https://hellmer.id",
@@ -60,6 +61,103 @@
         "Managed Workwear Program"
       ],
       "sameAs": ["https://wa.me/6285647486700"]
+    }
+    </script>
+
+    <!-- Structured Data: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": "https://hellmer.id/#website",
+      "name": "HELLMER",
+      "url": "https://hellmer.id",
+      "inLanguage": "id-ID",
+      "publisher": { "@id": "https://hellmer.id/#organization" }
+    }
+    </script>
+
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Apakah HELLMER menjual wearpack tahan api?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "HELLMER menyediakan workwear teknis untuk kebutuhan yang memerlukan perlindungan tahan api atau performa panas/api, sesuai penilaian risiko dan spesifikasi pelanggan."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah semua produk HELLMER sudah bersertifikat?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Status sertifikasi atau bukti pengujian berbeda menurut produk dan model. HELLMER hanya menyatakan standar atau sertifikasi apabila dokumen yang relevan tersedia."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah HELLMER dapat membuat desain corporate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Kami dapat mendukung desain khusus, warna, logo, penandaan identitas, rentang ukuran, dan kebutuhan lokasi kerja tertentu setelah kebutuhan teknis disepakati."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Berapa minimum order untuk workwear HELLMER?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Minimum order bervariasi tergantung kategori produk dan spesifikasi. Untuk program workwear terkelola, kami bekerja dengan perusahaan yang membutuhkan pasokan berulang — mulai dari kebutuhan tim kecil hingga program multi-site."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Apakah HELLMER melayani pengiriman ke luar Jawa?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ya. Kami mendukung pengiriman ke seluruh Indonesia, termasuk lokasi proyek dan site operasi di luar Jawa. Pengiriman ke lokasi terpencil dapat dibahas dalam konsultasi teknis."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Bagaimana proses konsultasi teknis HELLMER?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Proses dimulai dengan brief kebutuhan: lokasi kerja, risiko utama, jumlah pekerja, dan spesifikasi saat ini jika ada. Kami kemudian menyusun rekomendasi produk, standar relevan, dan langkah berikutnya."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Structured Data: Service -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Managed Industrial Workwear Program",
+      "description": "Program workwear teknis terkelola untuk perusahaan di sektor oil & gas, EPC, energy, chemical, mining, dan manufacturing — mencakup penilaian risiko, spesifikasi teknis, sampel dan kesesuaian ukuran, quality control, serta pasokan berulang yang konsisten.",
+      "provider": { "@id": "https://hellmer.id/#organization" },
+      "areaServed": { "@type": "Country", "name": "Indonesia" },
+      "serviceType": "Industrial Workwear Supply",
+      "serviceOutput": "Pakaian kerja teknis berstandar industri",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Kategori Workwear Teknis HELLMER",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "FR Industrial Workwear" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Arc-Flash Workwear" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High-Visibility Workwear" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Welding Workwear" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Antistatic Workwear" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Inherent Aramid & FR Blends" } }
+        ]
+      }
     }
     </script>
   </head>
